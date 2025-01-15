@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>content page </title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section class="contact">
+        <div class="content">
+            <h2>Get in Touch</h2>
+            <p>Slide into my inbox, and let’s turn this conversation into something unforgettable. 😉✨</p>
+        </div>
+        <div class="container">
+            <div class="contact-info">
+                <div class="box">
+                    <div class="icon"><b><i class='bx bx-home'></i></b></div>
+                    <div class="text">
+                        <h3>Address</h3>
+                        <p>near govt Primary school Dhanal Kathua Jammu And Kashmir</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><b><i class='bx bx-phone'></i></b></div>
+                    <div class="text">
+                        <h3>Phone</h3>
+                        <p>9149987210</p>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="icon"><b><i class='bx bxl-gmail'></i></b></div>
+                    <div class="text">
+                        <h3>Email</h3>
+                        <p>mohit199sharma199@gmail.com</p>
+                    </div>
+                </div>
+                <h2 class="txt"> Connect with me</h2>
+                <ul class="sci">
+                    <li><a href=""><i class='bx bxl-facebook'></i></a></li>
+                    <li><a href=""><i class='bx bxl-snapchat'></i></a></li>
+                    <li><a href=""><i class='bx bxl-instagram' ></i></a></li>
+                    <li><a href=""><i class='bx bxl-linkedin' ></i></a></li>
+                </ul>
+            </div>
+            <div class="contactForm">
+                <form name="submit-to-google-sheet">
+                    <h2>Send messange</h2>
+                    <div class="inputBox">
+                        <input type="text" name="name" required="required">
+                        <span>Full name</span>
+                    </div>
+                    <div class="inputBox">
+                        <input type="text" name="email" required="required">
+                        <span>Email</span>
+                    </div>
+                    <div class="inputBox">
+                        <textarea type="Message" required="required"></textarea>
+                        <span>Type your Messange...</span>
+                    </div><div class="inputBox">
+                        <input type="submit" value="Send">
+                    </div>
+                </form>
+                <span id="msg"></span>
+            </div>
+        </div>
+
+    </section>
+      
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxZUlSIBDOpT1TRi4ESiC3emF4tBb48r770fmOAvUW5kwaT44TQnrUy_9QTeqpXXbdQQA/exec'
+        const form = document.forms['submit-to-google-sheet']
+        const msg = document.getElementById("msg")
+      
+        form.addEventListener('submit', e => {
+          e.preventDefault()
+          fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+            .then(response => {
+                msg.innerHTML = "Messsage sent successfully"
+                setTimeout(function(){
+                    msg.innerHTML = ""
+                },5000)
+                form.reset()
+            })
+            .catch(error => console.error('Error!', error.message))
+        })
+      </script>
+</body>
+</html>
